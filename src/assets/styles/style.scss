@@ -1,0 +1,68 @@
+*{
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20%;
+}
+
+button {
+  height: 20px;
+  border-radius: 10px;
+  margin: 5px 10px;
+}
+
+.buttonClicked {
+  background-color: cyan;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.MainList {
+  list-style: none;
+  margin-top: 30px;
+  text-align: center;
+  padding: 0;
+  .MainItem {
+    margin-top: 20px;
+    width: 350px;
+    border: 3px solid burlywood;
+    border-radius: 10px;
+    background: linear-gradient(
+                    90deg,
+                    rgba(93, 12, 255, 1) 0%,
+                    rgba(155, 0, 250, 1) 100%
+    );
+    color: #fff;
+  }
+  .NoteTagsBlock{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-between;
+    .NoteTags {
+      list-style: none;
+      display: flex;
+      margin: 10px;
+    }
+  }
+}
+
+.TagBlock {
+  margin-top: 40px;
+  text-align: center;
+  .TagList {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
