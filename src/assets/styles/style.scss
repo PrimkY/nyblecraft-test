@@ -51,6 +51,9 @@ button:hover{
       list-style: none;
       display: flex;
       margin: 10px;
+      li{
+        margin: 0px 5px;
+      }
     }
   }
 }

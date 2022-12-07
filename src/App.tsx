@@ -7,6 +7,8 @@ import TextField from './components/TextField/TextField';
 import { Button } from './components/Button/Button';
 import TagList from './components/TagList/TagList';
 import { getNoteDate } from './utils/getNoteDate';
+import { getTags } from './utils/getTags';
+import {getStringWithoutTags} from "./utils/getStringWithoutTags";
 
 const App = () => {
     const { createNote } = useNoteAction();
@@ -21,21 +23,14 @@ const App = () => {
 
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNote({ ...note, title: e.target.value, tags: [''] });
+        setNote({ ...note, title: e.target.value, tags: getTags(e.target.value)! });
     };
+
+
 
     const onAddNote = () => {
-        createNote({ ...note, date: getNoteDate(), id: Date.now().toString() });
+        createNote({ ...note, title: getStringWithoutTags(note.title), date: getNoteDate(), id: Date.now().toString() });
     };
-
-    // const filterTag = localStorage.getItem('button')
-
-    // const filterByTags = (tag: string) => {
-    //     if( filterTag === note.tags[0]){
-    //         let filtered = [...notes].filter(item => item.tags[0] === tag)
-    //         setFilteredNotes(filtered)
-    //     }
-    // }
 
     return (
         <div className="App">

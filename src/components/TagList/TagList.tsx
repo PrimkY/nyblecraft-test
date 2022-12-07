@@ -4,10 +4,11 @@ import {Button} from "../Button/Button";
 import {getNotesCollection} from "../../utils/getTagsCollection";
 
 interface TagListProps {}
-// eslint-disable-next-line
+
 const TagList = ({}:TagListProps) => {
     const {notes} = useAppSelector((state)=>state.notes)
     const tagList = getNotesCollection(notes)
+
 
     return (
         <div className={"TagBlock"}>
@@ -15,7 +16,7 @@ const TagList = ({}:TagListProps) => {
             <ul className={"TagList"}>
                 {tagList.map((item) => (
                     <li key={item}>
-                        <Button onClick={()=> {localStorage.setItem('button', item)}}>{item}</Button>
+                        <Button>{item}</Button>
                     </li>
                 ))}
             </ul>

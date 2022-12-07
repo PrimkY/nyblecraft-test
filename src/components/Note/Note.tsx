@@ -5,6 +5,7 @@ import {useNoteAction} from "../../hooks/useAction";
 import TextField from "../TextField/TextField";
 import { getNoteDate } from "../../utils/getNoteDate";
 import { getTags } from "../../utils/getTags";
+import {getStringWithoutTags} from "../../utils/getStringWithoutTags";
 
 interface NoteProps {
     note: NoteItem
@@ -14,7 +15,6 @@ const Note = ({ note }: NoteProps) => {
     const { editNote, deleteNote } = useNoteAction();
     const [edit, setEdit] = useState(false);
     const [title, setTitle] = useState(note.title);
-    const [tag, setTag] = useState(['']);
 
     return (
         <div>
@@ -28,17 +28,6 @@ const Note = ({ note }: NoteProps) => {
                     }
                 />
             )}
-            {edit && (
-                <TextField
-                    value={tag}
-                    placeholder={"Set tag"}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        let arg = e.target.value
-                        setTag(getTags(arg)!)
-                     }
-                    }
-                />
-            )}
             <div>
                 <p>{note.date}</p>
                 <div>
@@ -48,9 +37,9 @@ const Note = ({ note }: NoteProps) => {
                             onClick={() => {
                                 editNote({
                                     ...note,
-                                    title: title,
+                                    title: getStringWithoutTags(title),
                                     date: getNoteDate(),
-                                    tags: tag,
+                                    tags: getTags(title)!,
                                 });
                                 setEdit(false);
                             }}
@@ -64,7 +53,7 @@ const Note = ({ note }: NoteProps) => {
             <div className={"NoteTagsBlock"}>
                 <div>Current node tags:</div>
                 <ul className={"NoteTags"}>
-                    {tag.map((item) => (
+                    {note.tags.map((item) => (
                         <li key={item}>
                             <div>{item}</div>
                         </li>
